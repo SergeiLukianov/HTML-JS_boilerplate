@@ -1,82 +1,4 @@
-import {openTasks, doneTasks, updateStorage} from './storage.js'
-
-function handleClickOnOpenTasksList(event) {
-    let todoElement = event.target
-
-    let action = todoElement.dataset.action
-    let id = todoElement.parentElement.id
-
-    if (!action || !id)
-        return;
-
-    if (action === 'delete')
-    {
-        if (removeOpenTask(id)) {
-            updateStorage();
-            displayTodos();
-        }
-    } else if (action === 'check') {
-        let item = removeOpenTask(id)
-        if (item) {
-            item.status = 'completed'
-            doneTasks.unshift(item)
-            updateStorage();
-            displayTodos();
-        }
-    }
-}
-
-function handleClickOnDoneTasksList(event) {
-    let todoElement = event.target
-
-    let action = todoElement.dataset.action
-    let id = todoElement.parentElement.id
-
-    if (!action || !id)
-        return;
-
-    if (action === 'delete')
-    {
-        let i = removeDoneTask(id)
-        console.log(i)
-        if (i) {
-            updateStorage();
-            displayTodos();
-        }
-    } else if (action === 'check') {
-        let item = removeDoneTask(id)
-        if (item) {
-            item.status = 'open'
-            openTasks.push(item)
-            updateStorage();
-            displayTodos();
-        }
-    }
-}
-
-function removeOpenTask(id) {
-    console.log('remove open task with id', id)
-    let index = openTasks.findIndex(el => parseInt(el.id) === parseInt(id))
-    console.log('index to remove element', index)
-    if (index === -1)
-        return null
-
-    return openTasks.splice(index, 1)[0]
-}
-
-function removeDoneTask(id) {
-    let index = doneTasks.findIndex(el => parseInt(el.id) === parseInt(id))
-
-    if (index === -1)
-        return null
-
-    return doneTasks.splice(index, 1)[0]
-}
-
-
-document.getElementById('openTasksList').addEventListener('click', handleClickOnOpenTasksList)
-document.getElementById('doneTasksList').addEventListener('click', handleClickOnDoneTasksList)
-
+import {openTasks} from './storage.js'
 
 class TodoItem {
     constructor(description) {
@@ -103,26 +25,6 @@ export function refreshInput() {
     newTaskInput.addEventListener('blur', (e) => 
         e.target.setAttribute('placeholder', 'New task...'));
 }
-
-export function displayTodos() {
-    renderOpenTasks(openTasks)
-    renderDoneTasks(doneTasks);
-}
-
-function renderOpenTasks(openTodos) {
-    let list = document.getElementById('openTasksList')
-    list.innerHTML = '';
-
-    openTodos.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
-}
-
-function renderDoneTasks(doneTodos) {
-    let list = document.getElementById('doneTasksList')
-    list.innerHTML = '';
-
-    doneTodos.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
-}
-
 
 export function createElementForTodo(todoItem) {
     let itemDiv = document.createElement('li')
