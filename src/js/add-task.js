@@ -1,4 +1,5 @@
 import {openTasks} from './storage.js'
+import {createElementForTodo} from './display-tasks.js'
 
 class TodoItem {
     constructor(description) {
@@ -24,35 +25,4 @@ export function refreshInput() {
         e.target.removeAttribute('placeholder'));
     newTaskInput.addEventListener('blur', (e) => 
         e.target.setAttribute('placeholder', 'New task...'));
-}
-
-export function createElementForTodo(todoItem) {
-    let itemDiv = document.createElement('li')
-    itemDiv.setAttribute('id', todoItem.id)
-    itemDiv.style.display = 'flex';
-
-    let checkbox = document.createElement('input')
-    checkbox.setAttribute('type', 'checkbox')
-    if (todoItem.status === 'completed')
-        checkbox.setAttribute('checked', '')
-    checkbox.setAttribute('data-action', 'check')
-
-    itemDiv.appendChild(checkbox) 
-
-    let descP = document.createElement('p')
-    descP.innerHTML = `${todoItem.description}`
-    itemDiv.appendChild(descP)
-
-    let createdTsP = document.createElement('p')
-    createdTsP.innerText = `${new Date(todoItem.id).toLocaleTimeString()}`
-    itemDiv.appendChild(createdTsP)
-    
-    let deleteItemButton = document.createElement('button')
-    deleteItemButton.textContent = 'X'
-    deleteItemButton.setAttribute('data-action', 'delete')
-
-    itemDiv.appendChild(deleteItemButton);
-
-
-    return itemDiv;
 }

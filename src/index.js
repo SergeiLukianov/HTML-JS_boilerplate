@@ -14,6 +14,7 @@ addTaskButton.addEventListener('click', () => {
     createAndAppendTodo(newTaskInput.value)
     updateStorage();
     refreshInput();
+    newTaskInput.focus();
 })
 
 document.getElementById('openTasksList').addEventListener('click', handleClickOnOpenTasksList)

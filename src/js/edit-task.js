@@ -21,6 +21,7 @@ export function handleClickOnOpenTasksList(event) {
         let item = removeOpenTask(id)
         if (item) {
             item.status = 'completed'
+            item.dueDate = new Date().valueOf()
             doneTasks.unshift(item)
             updateStorage();
             displayLists(openTasks, doneTasks);
@@ -48,6 +49,7 @@ export function handleClickOnDoneTasksList(event) {
         let item = removeDoneTask(id)
         if (item) {
             item.status = 'open'
+            item.dueDate = null
             openTasks.push(item)
             updateStorage();
             displayLists(openTasks, doneTasks);
