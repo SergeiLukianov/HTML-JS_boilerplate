@@ -19,10 +19,6 @@ export function createAndAppendTodo(value) {
     openTasksList.insertBefore(itemElement, openTasksList.firstChildElement)
 }
 
-export function refreshInput() {
+export function clearInput() {
     newTaskInput.value = '';
-    newTaskInput.addEventListener('focus', (e) => 
-        e.target.removeAttribute('placeholder'));
-    newTaskInput.addEventListener('blur', (e) => 
-        e.target.setAttribute('placeholder', 'New task...'));
 }

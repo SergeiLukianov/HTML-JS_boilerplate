@@ -17,14 +17,31 @@
         <button id="addTaskButton">ADD</button>
       </div>
 
-      <div class="openTasksContainer">
-        <h2>Open</h2>
+      <div id="openTasksContainer" class="openTasksContainer">
+        <div class="openTasksContainerHeader">
+          <h2>Open</h2>
+          <select id="openTasksSort">
+            <option value="createdDateASC">Creation date ASC</option>
+            <option value="createdDateDESC">Creation date DESC</option>
+            <option value="descriptionASC">Records ASC</option>
+            <option value="descriptionDESC">Records DESC</option>
+          </select>
+        </div>
         <ul id="openTasksList"></ul>
       </div>
 
-      <div class="doneTasksContainer">
-        <h2>Done</h2>
-        <ul id="doneTasksList"></ul>
+      <div id="doneTasksContainer" class="doneTasksContainer">
+        <div class="openTasksContainerHeader">
+          <h2>Done</h2>
+          <select id="doneTasksSort">
+            <option value="createdDateASC">Creation date ASC</option>
+            <option value="createdDateDESC">Creation date DESC</option>
+            <option value="descriptionASC">Records ASC</option>
+            <option value="descriptionDESC">Records DESC</option>
+          </select>
+        </div>
+        <ul id="doneTasksList">
+        </ul>
       </div>
 
       </div>

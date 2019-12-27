@@ -1,4 +1,4 @@
-import { openTasks, doneTasks, updateStorage } from './storage.js';
+import { openTasks, doneTasks, updateStorage} from './storage.js';
 
 
 export function displayTodos() {
@@ -20,6 +20,7 @@ function renderOpenTasks(openTodos) {
     list.innerHTML = '';
 
     openTodos.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
+    document.getElementById('openTasksSort').value = localStorage.getItem('openTasksSort')
 }
 
 function renderDoneTasks(doneTodos) {
@@ -27,6 +28,7 @@ function renderDoneTasks(doneTodos) {
     list.innerHTML = '';
 
     doneTodos.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
+    document.getElementById('doneTasksSort').value = localStorage.getItem('doneTasksSort')
 }
 
 export function createElementForTodo(todoItem) {
@@ -42,7 +44,7 @@ export function createElementForTodo(todoItem) {
     itemDiv.appendChild(checkbox) 
 
     let descP = document.createElement('p')
-    descP.innerHTML = `${todoItem.description}`
+    descP.textContent = `${todoItem.description}`
     itemDiv.appendChild(descP)
     descP.addEventListener('dblclick', e => addTextEditorForDescriptionElement(e.target))
 
