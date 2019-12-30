@@ -7,6 +7,10 @@
   margin-bottom: 30px;
 }
 
+.header {
+  background: rgba(54, 155, 243, 0.959);
+}
+
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -23,11 +27,15 @@
 }
 
 .openTasksContainer, .doneTasksContainer {
-  width: 100%;
+  width: 60%;
 }
 
 #newTaskInput {
+  border:none;
+  border-bottom: solid lightgray 1px;
+  flex-grow: 1;
   width: 30%;
+  margin-right: 10px;
 }
 
 #addTAskButton {
@@ -59,7 +67,24 @@ ul {
 li {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   width: 50%;
   margin-bottom: 30px;
+  border: lightgray solid 1px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px 1px lightgray;
+}
+
+li input[type=checkbox] {
+  margin: 15px 0px 15px 6px;
+}
+
+li button[data-action=delete] {
+  margin: 15px 6px 15px 15px;
+}
+
+li input[type=text], li p {
+  margin: 10px;
+  flex-grow: 3;
 }

@@ -4,6 +4,7 @@ import { openTasks, doneTasks, updateStorage } from './storage.js';
 
 export function handleClickOnOpenTasksList(event) {
     let todoElement = event.target
+    console.log(event.target)
 
     let action = todoElement.dataset.action
     let id = todoElement.parentElement.id

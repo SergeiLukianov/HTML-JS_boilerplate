@@ -56,15 +56,22 @@ export function createElementForTodo(todoItem) {
 
     let createdTsP = document.createElement('p')
     createdTsP.innerText = `${new Date(todoItem.id).toLocaleTimeString()}`
-    itemDiv.appendChild(createdTsP)
+    // itemDiv.appendChild(createdTsP)
+
+    let timeStampsDiv = document.createElement('div')
+    timeStampsDiv.appendChild(createdTsP)
 
     if (todoItem.dueDate) {
         let dueDateTsP = document.createElement('p')
         dueDateTsP.innerText = `${new Date(todoItem.dueDate).toLocaleTimeString()}`
-        itemDiv.appendChild(dueDateTsP)
+        timeStampsDiv.appendChild(dueDateTsP)
     }
+
+    itemDiv.appendChild(timeStampsDiv)
     
     let deleteItemButton = document.createElement('button')
+    deleteItemButton.classList.add('btn')
+    deleteItemButton.classList.add('close')
     deleteItemButton.textContent = 'X'
     deleteItemButton.setAttribute('data-action', 'delete')
 

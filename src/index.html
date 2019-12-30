@@ -14,13 +14,13 @@
     <div class="mainContainer">
       <div class="addTaskContainer">
         <input id="newTaskInput" type="text" placeholder="New task...">
-        <button id="addTaskButton">ADD</button>
+        <button id="addTaskButton" class="btn">ADD</button>
       </div>
 
       <div id="openTasksContainer" class="openTasksContainer">
         <div class="openTasksContainerHeader">
-          <h2>Open</h2>
-          <select id="openTasksSort">
+          <h3>Open</h3>
+          <select id="openTasksSort" class="selectpicker">
             <option value="createdDateASC">Creation date ASC</option>
             <option value="createdDateDESC">Creation date DESC</option>
             <option value="descriptionASC">Records ASC</option>
@@ -32,8 +32,8 @@
 
       <div id="doneTasksContainer" class="doneTasksContainer">
         <div class="openTasksContainerHeader">
-          <h2>Done</h2>
-          <select id="doneTasksSort">
+          <h3>Done</h3>
+          <select id="doneTasksSort" class="selectpicker">
             <option value="createdDateASC">Creation date ASC</option>
             <option value="createdDateDESC">Creation date DESC</option>
             <option value="descriptionASC">Records ASC</option>

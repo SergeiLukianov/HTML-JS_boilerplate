@@ -1,6 +1,7 @@
 import './style.css';
-import {createAndAppendTodo, clearInput} from './js/add-task.js';
+import './bootstrap.css';
 import {updateStorage, openTasks, doneTasks, SORTS} from './js/storage.js';
+import {createAndAppendTodo, clearInput} from './js/add-task.js';
 import {displayTodos, displayLists} from './js/display-tasks.js';
 import {handleClickOnOpenTasksList, handleClickOnDoneTasksList} from './js/edit-task';
 
