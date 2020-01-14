@@ -1,9 +1,10 @@
 import './style.css';
 import './bootstrap.css';
-import {updateStorage, openTasks, doneTasks, SORTS} from './js/storage.js';
+import {updateStorage, openTasks, doneTasks} from './js/storage.js';
 import {createAndAppendTodo, clearInput} from './js/add-task.js';
 import {displayTodos, displayLists} from './js/display-tasks.js';
 import {handleClickOnOpenTasksList, handleClickOnDoneTasksList} from './js/edit-task';
+import {sortList} from './js/sort.js';
 
 
 let newTaskInput = document.getElementById('newTaskInput')
@@ -51,7 +52,7 @@ function createTodo() {
         return;
     
     createAndAppendTodo(newTaskInput.value)
-    updateStorage();
+    displayLists(openTasks, null)
     clearInput();
     newTaskInput.focus();
 }
@@ -60,15 +61,14 @@ function sortTasks(event) {
     let select = event.target
 
     if (select.id === 'openTasksSort') {
-        // console.log(select.value)
-        openTasks.sort(SORTS[select.value])
+        sortList(openTasks, select.value)
         localStorage.setItem('openTasksSort', select.value)
         
         updateStorage();
         displayLists(openTasks, null)
 
     } else {
-        doneTasks.sort(SORTS[select.value])
+        sortList(doneTasks, select.value)
         localStorage.setItem('doneTasksSort', select.value)
 
         updateStorage();

@@ -35,15 +35,9 @@ export {openTasks, doneTasks}
 
 export const SORTS = {
     createdDateASC: function(a, b) {
-        // console.log('a.id - b.id')
-        // console.log('a:', a)
-        // console.log('b:', b)
         return a.id - b.id;
     },
     createdDateDESC:  function(a, b) {
-        // console.log('b.id - a.id')
-        // console.log('b:', b)
-        // console.log('a:', a)
         return b.id - a.id;
     },
     descriptionASC: function(a, b) {

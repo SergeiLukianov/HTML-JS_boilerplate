@@ -1,5 +1,6 @@
 import {openTasks} from './storage.js'
-import {createElementForTodo} from './display-tasks.js'
+import {displayLists} from './display-tasks.js'
+import {sortList} from './sort.js';
 
 class TodoItem {
     constructor(description) {
@@ -12,11 +13,9 @@ class TodoItem {
 export function createAndAppendTodo(value) {
     let newItem = new TodoItem(value)
     openTasks.push(newItem)
-
-    let itemElement = createElementForTodo(newItem);
+    sortList(openTasks, localStorage.getItem('openTasksSort'))
     
-    let openTasksList = document.getElementById('openTasksList')
-    openTasksList.insertBefore(itemElement, openTasksList.firstChildElement)
+    displayLists(openTasks, null)
 }
 
 export function clearInput() {

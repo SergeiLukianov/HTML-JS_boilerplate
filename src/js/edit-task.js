@@ -1,10 +1,10 @@
 import {displayLists} from './display-tasks.js'
 import { openTasks, doneTasks, updateStorage } from './storage.js';
+import { sortList } from './sort.js';
 
 
 export function handleClickOnOpenTasksList(event) {
     let todoElement = event.target
-    console.log(event.target)
 
     let action = todoElement.dataset.action
     let id = todoElement.parentElement.id
@@ -24,6 +24,7 @@ export function handleClickOnOpenTasksList(event) {
             item.status = 'completed'
             item.dueDate = new Date().valueOf()
             doneTasks.unshift(item)
+            sortList(doneTasks, localStorage.getItem('doneTasksSort'))
             updateStorage();
             displayLists(openTasks, doneTasks);
         }
@@ -52,6 +53,7 @@ export function handleClickOnDoneTasksList(event) {
             item.status = 'open'
             item.dueDate = null
             openTasks.push(item)
+            sortList(openTasks, localStorage.getItem('openTasksSort'))
             updateStorage();
             displayLists(openTasks, doneTasks);
         }

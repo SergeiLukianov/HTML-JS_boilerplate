@@ -1,4 +1,5 @@
 import { openTasks, doneTasks, updateStorage} from './storage.js';
+import {sortList} from './sort.js';
 
 
 export function displayTodos() {
@@ -19,7 +20,17 @@ function renderOpenTasks(openTodos) {
     let list = document.getElementById('openTasksList')
     list.innerHTML = '';
 
-    openTodos.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
+    let searchField = document.getElementById('search-todos')
+
+    let tasks;
+
+    if (searchField)
+    {
+        tasks = searchField.value ? openTodos.filter(item => item.description.toLowerCase().includes(searchField.value.toLowerCase()))
+        : openTodos
+    }
+
+    tasks.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
     document.getElementById('openTasksSort').value = localStorage.getItem('openTasksSort')
 }
 
@@ -27,7 +38,17 @@ function renderDoneTasks(doneTodos) {
     let list = document.getElementById('doneTasksList')
     list.innerHTML = '';
 
-    doneTodos.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
+    let searchField = document.getElementById('search-todos')
+
+    let tasks;
+
+    if (searchField)
+    {
+        tasks = searchField.value ? doneTodos.filter(item => item.description.toLowerCase().includes(searchField.value.toLowerCase()))
+        : doneTodos
+    }
+
+    tasks.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
     document.getElementById('doneTasksSort').value = localStorage.getItem('doneTasksSort')
 }
 
@@ -56,7 +77,6 @@ export function createElementForTodo(todoItem) {
 
     let createdTsP = document.createElement('p')
     createdTsP.innerText = `${new Date(todoItem.id).toLocaleTimeString()}`
-    // itemDiv.appendChild(createdTsP)
 
     let timeStampsDiv = document.createElement('div')
     timeStampsDiv.appendChild(createdTsP)
@@ -98,9 +118,11 @@ function modifyTodoDescription(event) {
             let itemId = li.id
             if (li.parentElement.id === 'openTasksList') {
                 openTasks.find(el => parseInt(itemId) === el.id).description = event.target.value
+                sortList(openTasks, localStorage.getItem('openTasksSort'))
                 displayLists(openTasks)
             } else {
                 doneTasks.find(el => parseInt(itemId) === el.id).description = event.target.value
+                sortList(doneTasks, localStorage.getItem('doneTasksSort'))
                 displayLists(null, doneTasks)
             }
             updateStorage();
