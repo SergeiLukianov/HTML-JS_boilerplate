@@ -88,3 +88,7 @@ li input[type=text], li p {
   margin: 10px;
   flex-grow: 3;
 }
+
+li div {
+  color: gray;
+}
