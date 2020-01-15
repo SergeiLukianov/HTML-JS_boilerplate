@@ -32,6 +32,14 @@ function renderOpenTasks(openTodos) {
 
     tasks.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
     document.getElementById('openTasksSort').value = localStorage.getItem('openTasksSort')
+    
+    let clearListElement = document.querySelector('#openTasksContainer .clear-tasks')
+    if (tasks && tasks.length) {
+        clearListElement.removeAttribute('hidden')
+    } else {
+        clearListElement.setAttribute('hidden', 'true')
+    }
+
 }
 
 function renderDoneTasks(doneTodos) {
@@ -50,6 +58,13 @@ function renderDoneTasks(doneTodos) {
 
     tasks.map(task => createElementForTodo(task)).forEach(el => list.appendChild(el))
     document.getElementById('doneTasksSort').value = localStorage.getItem('doneTasksSort')
+
+    let clearListElement = document.querySelector('#doneTasksContainer .clear-tasks')
+    if (tasks && tasks.length) {
+        clearListElement.removeAttribute('hidden')
+    } else {
+        clearListElement.setAttribute('hidden', 'true')
+    }
 }
 
 export function createElementForTodo(todoItem) {

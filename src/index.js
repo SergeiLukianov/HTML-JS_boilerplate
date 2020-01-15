@@ -1,6 +1,6 @@
 import './style.css';
 import './bootstrap.css';
-import {updateStorage, openTasks, doneTasks} from './js/storage.js';
+import {updateStorage, openTasks, doneTasks, clearOpenTasks, clearDoneTasks} from './js/storage.js';
 import {createAndAppendTodo, clearInput} from './js/add-task.js';
 import {displayTodos, displayLists} from './js/display-tasks.js';
 import {handleClickOnOpenTasksList, handleClickOnDoneTasksList} from './js/edit-task';
@@ -31,6 +31,8 @@ document.querySelectorAll('select').forEach( select => select.addEventListener('
 
 clearInput();
 displayTodos();
+
+document.querySelectorAll('a.clear-tasks').forEach(a => a.addEventListener('click', clearList))
 
 function searchItems(event) {
     let value = event.target.value
@@ -73,5 +75,20 @@ function sortTasks(event) {
 
         updateStorage();
         displayLists(null, doneTasks)
+    }
+}
+
+function clearList(event) {
+    event.preventDefault();
+
+    let parentId = event.target.parentElement.id
+    if (parentId === 'openTasksContainer') {
+        clearOpenTasks();
+        updateStorage();
+        displayTodos();
+    } else if (parentId === 'doneTasksContainer') {
+        clearDoneTasks();
+        updateStorage();
+        displayTodos();
     }
 }

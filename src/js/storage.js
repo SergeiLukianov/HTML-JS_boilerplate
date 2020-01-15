@@ -23,14 +23,6 @@ export function updateStorage() {
     localStorage.setItem('doneTasks', JSON.stringify(doneTasks))
 }
 
-export function getOpenTasksFromStorage() {
-    return JSON.parse(localStorage.getItem('openTasks'))
-}
-
-export function getDoneTasksFromStorage() {
-    return JSON.parse(localStorage.getItem('doneTasks'))
-}
-
 export {openTasks, doneTasks}
 
 export const SORTS = {
@@ -46,4 +38,12 @@ export const SORTS = {
     descriptionDESC: function(a, b) {
         return b.description.localeCompare(a.description);
     }
+}
+
+export function clearOpenTasks() {
+    openTasks = []
+}
+
+export function clearDoneTasks() {
+    doneTasks = []
 }
